@@ -14,7 +14,7 @@ const Navbar = () => {
               <summary>Sign in</summary>
               <ul className="bg-base-100 rounded-t-none p-2">
                 <li><a>Log in</a></li>
-                <li><a>Register</a></li>
+                <li><a href='/register'>Register</a></li>
               </ul>
             </details>
           </li>
