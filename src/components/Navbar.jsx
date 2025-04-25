@@ -4,17 +4,17 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">TechSafeSpace</a>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          <li><a>Link</a></li>
+          <li><a>Explore</a></li>
           <li>
             <details>
-              <summary>Parent</summary>
+              <summary>Sign in</summary>
               <ul className="bg-base-100 rounded-t-none p-2">
-                <li><a>Link 1</a></li>
-                <li><a>Link 2</a></li>
+                <li><a>Log in</a></li>
+                <li><a>Register</a></li>
               </ul>
             </details>
           </li>

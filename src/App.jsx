@@ -3,11 +3,7 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold text-center">¡Hello Tailwind + DaisyUI! 🌼</h1>
-      <Navbar />
-      <button className="btn btn-primary mt-5">Botón DaisyUI</button>
-    </div>
+    <Navbar />
   );
 }
 
