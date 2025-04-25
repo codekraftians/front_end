@@ -46,7 +46,7 @@ const LoginSection = () => {
           <div className="flex justify-center gap-4">
             <button
               type="submit"
-              className="btn btn-sm bg-cyan-400 text-white border-none hover:bg-cyan-500"
+              className="btn btn-sm bg-info text-white border-none hover"
             >
               Sign In
             </button>

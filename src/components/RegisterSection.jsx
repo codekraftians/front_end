@@ -62,13 +62,13 @@ const RegisterSection = () => {
           <div className="flex justify-center gap-4">
             <button
               type="submit"
-              className="btn btn-sm bg-cyan-400 text-white border-none hover:bg-cyan-500"
+              className="btn btn-sm bg-primary text-white border-none hover"
             >
               Crear
             </button>
             <button
               type="button"
-              className="btn btn-sm bg-pink-400 text-white border-none hover:bg-pink-500"
+              className="btn btn-sm bg-secondary text-white border-none hover"
             >
               Cancelar
             </button>
