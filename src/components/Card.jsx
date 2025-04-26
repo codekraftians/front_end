@@ -18,8 +18,7 @@ const Card = () => {
           A card component has a figure, a body part, and inside body there are title and actions parts
         </p>
         <div className="card-actions justify-end">
-          <div className="badge badge-outline">Fashion</div>
-          <div className="badge badge-outline">Products</div>
+          <button className="btn btn-primary">Join!</button>
         </div>
       </div>
     </div>
