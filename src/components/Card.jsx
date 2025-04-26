@@ -1,24 +1,24 @@
 import React from 'react';
 
-const Card = () => {
+const Card = ({title, image, description, isNew}) => {
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <figure>
         <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          alt="Shoes"
+          src={image}
+          alt={title}
         />
       </figure>
       <div className="card-body">
         <h2 className="card-title">
-          Card Title
-          <div className="badge badge-secondary">NEW</div>
+          {title}
+          {isNew && <div className="badge badge-secondary">NEW</div>}
         </h2>
         <p>
-          A card component has a figure, a body part, and inside body there are title and actions parts
+          {description}
         </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Join!</button>
+          <button className="btn btn-primary text-base">Join!</button>
         </div>
       </div>
     </div>
