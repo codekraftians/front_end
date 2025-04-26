@@ -2,14 +2,14 @@ import React from 'react';
 
 const Card = ({title, image, description, isNew}) => {
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
+    <div className="card bg-base-100 w-full max-w-sm shadow-sm min-h-[250px] md:min-h-[25vh] lg:min-h-[30vh] hover:shadow-xl transition-shadow duration-300 ease-in-out">
       <figure>
         <img
           src={image}
           alt={title}
         />
       </figure>
-      <div className="card-body">
+      <div className="card-body p-4">
         <h2 className="card-title">
           {title}
           {isNew && <div className="badge badge-secondary">NEW</div>}
