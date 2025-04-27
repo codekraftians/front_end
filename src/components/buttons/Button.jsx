@@ -7,7 +7,7 @@ const Button = ({
   variant = 'neutral', 
   ...props 
 }) => {
-  const baseStyles = 'text-base px-4 py-2';
+  const baseStyles = 'btn text-base px-4 py-2';
 
   const variants = {
     neutral: 'btn-neutral',
