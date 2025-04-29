@@ -1,5 +1,4 @@
-#root {
+@import "tailwindcss";
+@plugin "daisyui";
 
 
-  text-align: center;
-}
