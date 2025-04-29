@@ -38,7 +38,7 @@ const LoginSection = () => {
               placeholder="Password"
               minLength="8"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Debe tener al menos 8 caracteres, incluyendo un número, una letra minúscula y una letra mayúscula"
+              title="Must be at least 8 characters, including a number, a lowercase letter, and an uppercase letter"
             />
             
           </div>

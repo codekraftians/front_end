@@ -18,7 +18,7 @@ const RegisterSection = () => {
   return (
     <div className="bg-gray-100 flex items-center justify-center min-h-[70vh]">
       <div className="bg-white shadow-md p-8 rounded-md w-80 text-center">
-        <h1 className="text-lg mb-6">Regístrate</h1>
+        <h1 className="text-lg mb-6">Register</h1>
 
         <form onSubmit={handleSubmit}>
           <div className="form-control mb-4">
@@ -48,7 +48,7 @@ const RegisterSection = () => {
               placeholder="Password"
               minLength="8"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Debe tener al menos 8 caracteres, incluyendo un número, una letra minúscula y una letra mayúscula"
+              title="Must be at least 8 characters, including a number, a lowercase letter, and an uppercase letter"
             />
             
             <p className="validator-hint text-xs text-gray-500 mb-4 text-left">
@@ -64,13 +64,13 @@ const RegisterSection = () => {
               type="submit"
               className="btn btn-sm bg-primary text-white border-none hover"
             >
-              Crear
+              Create
             </button>
             <button
               type="button"
               className="btn btn-sm bg-secondary text-white border-none hover"
             >
-              Cancelar
+              Cancel
             </button>
           </div>
         </form>
