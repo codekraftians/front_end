@@ -3,6 +3,8 @@ import App from "../App";
 import Explore from "../pages/Explore";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import EditEvents from "../pages/EditEvents";
+
 
 function Router() {
   return (
@@ -13,6 +15,8 @@ function Router() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/edit-events" element={<EditEvents />} />
+
         </Routes>
       </div>
     </BrowserRouter>
