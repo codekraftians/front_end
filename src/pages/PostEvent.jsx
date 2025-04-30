@@ -1,11 +1,12 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import UserData from "../components/UserData";
 
 function PostEvent() {
   return (
     <>
       <Navbar />
-      <h1>Post Event</h1>
+      <UserData />
       <Footer />
     </>
   );
