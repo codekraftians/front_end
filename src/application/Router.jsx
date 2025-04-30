@@ -3,6 +3,7 @@ import App from "../App";
 import Explore from "../pages/Explore";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import PostEvent from "../pages/PostEvent";
 
 function Router() {
   return (
@@ -13,6 +14,7 @@ function Router() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/events/create" element={<PostEvent />} />
         </Routes>
       </div>
     </BrowserRouter>
