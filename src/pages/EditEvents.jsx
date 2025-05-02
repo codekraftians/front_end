@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const EditEvent = () => {
-    const [isEditing, setIsEditing] = useState(false); // mostrará el formulario cuando isEditing sea true
     const [formData, setFormData] = useState({
         name: "Nombre del Evento",
         date: "2023-12-31T15:00", // Ejemplo de formato datetime-local
@@ -55,82 +54,8 @@ const EditEvent = () => {
                         </div>
                     </div>
 
-                    {/* Formulario de edición (solo si isEditing == true) */}
-                    {isEditing && (
-                        <div className="card w-full max-w-xl bg-base-100 shadow-xl p-6">
-                            <h2 className="text-2xl font-bold mb-4">Edit Event</h2>
-                            <form className="space-y-4">
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text"></span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleInputChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">Pick a Date and Time</span>
-                                    </label>
-                                    <input
-                                        type="datetime-local"
-                                        name="date"
-                                        value={formData.date}
-                                        onChange={handleInputChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">Descriptión</span>
-                                    </label>
-                                    <textarea
-                                        name="description"
-                                        value={formData.description}
-                                        onChange={handleInputChange}
-                                        className="textarea textarea-bordered w-full"
-                                    ></textarea>
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">Aforo Máximo</span>
-                                    </label>
-                                    <input
-                                        type="number"
-                                        name="capacity"
-                                        value={formData.capacity}
-                                        onChange={handleInputChange}
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="label">
-                                        <span className="label-text">Mode</span>
-                                    </label>
-                                    <select
-                                        name="mode"
-                                        value={formData.mode}
-                                        onChange={handleInputChange}
-                                        className="select select-bordered w-full"
-                                    >
-                                        <option value="online">Online</option>
-                                        <option value="in-person">In Person</option>
-                                    </select>
-                                </div>
-                                <button
-                                    type="button"
-                                    onClick={handleSaveChanges}
-                                    className="btn btn-primary w-full"
-                                >
-                                    Save Changes
-                                </button>
-                            </form>
-                        </div>
-                    )}
+                 
+                
                 </div>
             </main>
 
