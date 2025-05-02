@@ -1,15 +1,15 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import CreateEventData from "../components/CreateEventData";
+import UpdateEventData from "../components/UpdateEventData";
 
-function PostEvent() {
+function UpdateEvent() {
   return (
     <>
       <Navbar />
-      <CreateEventData />
+      <UpdateEventData />
       <Footer />
     </>
   );
 }
 
-export default PostEvent;
+export default UpdateEvent;
