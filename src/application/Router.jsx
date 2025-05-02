@@ -3,8 +3,8 @@ import App from "../App";
 import Explore from "../pages/Explore";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import CreateEventData from "../components/CreateEventData";
-import UpdateEventData from "../components/UpdateEventData";
+import PostEvent from "../pages/PostEvent";
+import UpdateEvent from "../pages/UpdateEvent";
 
 function Router() {
   return (
@@ -15,8 +15,8 @@ function Router() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/events/create" element={<CreateEventData />} />
-          <Route path="/events/update" element={<UpdateEventData />} />
+          <Route path="/events/create" element={<PostEvent />} />
+          <Route path="/events/update" element={<UpdateEvent />} />
         </Routes>
       </div>
     </BrowserRouter>

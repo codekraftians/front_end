@@ -26,7 +26,7 @@ const users = [
   },
 ];
 
-const UserData = () => {
+const CreateEventData = () => {
   // Filtrar el usuario con ID 3
   const selectedUser = users.find((user) => user.id === 3);
 
@@ -34,7 +34,7 @@ const UserData = () => {
     <div className="flex flex-col items-center w-full p-4">
       {/* Card principal */}
       <div className="card bg-base-300 rounded-box w-full max-w-4xl p-4 shadow-md">
-        <div className="flex flex-row md:flex-row items-start gap-4 justify-start">
+        <div className="flex flex-row items-center gap-4">
           {/* Avatar */}
           <div className="avatar flex-shrink-0">
             <div className="w-24 md:w-32 rounded-xl ring ring-black ring-offset-base-100 ring-offset-8">
@@ -69,8 +69,12 @@ const UserData = () => {
             className="input input-bordered w-full mb-4"
             placeholder="Event Name"
           />
-          <div className="flex flex-colum gap-10 w-full max-w-4xl p-4">
-            <input type="date" className="input" placeholder="Pick a Date" />
+          <div className="flex flex-row md:flex-row gap-4 w-full">
+            <input
+              type="date"
+              className="input input-bordered w-full md:w-1/2"
+              placeholder="Pick a Date"
+            />
             <input
               type="time"
               className="input input-bordered w-full md:w-1/2"
@@ -79,7 +83,7 @@ const UserData = () => {
           </div>
           <input
             type="text"
-            className="input input-bordered w-full mb-4"
+            className="input input-bordered w-full mb-4 mt-4" // Añadido mt-4 para más separación
             placeholder="Description"
           />
           <input
@@ -87,7 +91,7 @@ const UserData = () => {
             className="input input-bordered w-full mb-4"
             placeholder="Aforo Máximo"
           />
-          <div className="flex flex-row gap-10 w-full max-w-4xl p-4 items-center justify-center">
+          <div className="flex flex-row md:flex-row gap-4 w-full items-center justify-center">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
@@ -105,7 +109,7 @@ const UserData = () => {
               Online
             </label>
           </div>
-          <div className="flex flex-row gap-10 w-full max-w-4xl p-4 items-center justify-center">
+          <div className="flex flex-row md:flex-row gap-4 w-full items-center justify-center mt-4 mb-4">
             <Button variant="accent">Create</Button>
             <Button variant="error">Cancel</Button>
           </div>
@@ -115,4 +119,4 @@ const UserData = () => {
   );
 };
 
-export default UserData;
+export default CreateEventData;
