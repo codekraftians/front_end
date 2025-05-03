@@ -36,13 +36,13 @@ const Alert = ({
     if (!visible) return null;
 
     return (
-        <div role="alert" className={`${baseStyles} ${variantStyle}`} {...props}>
+        <div role="alert" className={`relative ${baseStyles} ${variantStyle}`} {...props}>
         {Icon && <Icon />}
         <span>{children}</span>
         {closable && (
             <Button
                 onClick={() => setVisible(false)}
-                variant="ghost"
+                variant="neutral"
                 className="btn-sm btn-circle btn-ghost absolute top-2 right-2"
                 aria-label="Close alert"
             >

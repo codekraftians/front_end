@@ -1,12 +1,19 @@
 import React from 'react';
+import { useState } from 'react';
+import { IconSuccess } from './icons/IconSuccess';
+import Alert from './Alert';
 
 const RegisterSection = () => {
+
+  const [showAlert, setShowAlert] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e.target[0].value); // username
     console.log(e.target[1].value); // email
     console.log(e.target[2].value); // password
     handleClear();
+    setShowAlert(true);
   };
 
   const handleClear = () => {
@@ -18,6 +25,18 @@ const RegisterSection = () => {
   return (
     <div className="bg-gray-100 flex items-center justify-center min-h-[70vh]">
       <div className="bg-white shadow-md p-8 rounded-md w-80 text-center">
+
+        {showAlert && (
+          <Alert
+            variant="success"
+            duration={4}
+            closable={true}
+            icon={IconSuccess}
+          >
+            Register successful!
+          </Alert>
+        )}
+
         <h1 className="text-lg mb-6">Register</h1>
 
         <form onSubmit={handleSubmit}>
