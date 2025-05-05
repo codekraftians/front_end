@@ -4,6 +4,7 @@ import Explore from "../pages/Explore";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import EditEvents from "../pages/EditEvents";
+import EventDetails from "../pages/EventDetails";
 
 
 function Router() {
@@ -16,6 +17,9 @@ function Router() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/edit-events" element={<EditEvents />} />
+          <Route path="/evento/:id" element={<EventDetails />} />
+
+      
 
         </Routes>
       </div>
