@@ -61,7 +61,7 @@ const Navbar = () => {
         {/* Avatar */}
         <div className="avatar">
           <div className="w-10 md:w-12 rounded-full ring ring-black ring-offset-base-100 ring-offset-2">
-            <Link to="/user-data">
+            <Link to="/user/data/all">
               <img src={selectedUser.image} alt={selectedUser.username} />
             </Link>
           </div>

@@ -5,6 +5,7 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import PostEvent from "../pages/PostEvent";
 import UpdateEvent from "../pages/UpdateEvent";
+import AllUserData from "../pages/AllUserData";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
           <Route path="/login" element={<Login />} />
           <Route path="/events/create" element={<PostEvent />} />
           <Route path="/events/update" element={<UpdateEvent />} />
+          <Route path="/user/data/all" element={<AllUserData />} />
         </Routes>
       </div>
     </BrowserRouter>
