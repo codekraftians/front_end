@@ -33,7 +33,9 @@ const Navbar = () => {
     <div className="navbar bg-base-100 shadow-sm">
       {/* Logo */}
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">TechSafeSpace</a>
+        <Link to="/" className="btn btn-ghost text-xl">
+          TechSafeSpace
+        </Link>
       </div>
 
       {/* Menú y Avatar */}

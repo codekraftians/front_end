@@ -13,10 +13,12 @@ const HeroSection = () => {
             Discover and create tech events where everyone belongs. Your
             platform for meaningful connections in the tech community.
           </h2>
-          <button className="btn btn-primary mr-4">Find events</button>
-          <button className="btn btn-secondary">
-            <Link to="/events/create">Create event</Link>
-          </button>
+          <Link to="/explore">
+            <button className="btn btn-primary mr-4">Find events</button>
+          </Link>
+          <Link to="/events/create">
+            <button className="btn btn-secondary">Create event</button>
+          </Link>
           <p className="py-6">
             Join thousands of tech enthusiasts building a more inclusive and
             collaborative tech community
