@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import eventoImg from "../assets/Imagen.png"
 
 const EditEvent = () => {
     const [formData, setFormData] = useState({
@@ -38,10 +39,10 @@ const EditEvent = () => {
                     <div className="card w-full max-w-xl bg-base-100 shadow-xl">
                         <figure>
                             <img
-                                src="https://via.placeholder.com/300" // remplazar co la img real del evento selecciond
+                                src={eventoImg} // remplazar co la img real del evento selecciond
                                 alt={formData.name}
-                                className="w-full h-60 object-cover rounded-t-lg"
-                            />
+                                className="w-full h-60 object-cover rounded-t-lg" />
+                            
                         </figure>
                         <div className="card-body">
                             <h2 className="card-title text-center">{formData.name}</h2>
