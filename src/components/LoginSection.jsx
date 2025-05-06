@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const LoginSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,11 +45,11 @@ const LoginSection = () => {
           </div>
 
           <div className="flex justify-center gap-4">
-            <button
-              type="submit"
-              className="btn btn-sm bg-info text-white border-none hover"
-            >
-              Sign In
+                <button
+                  type="submit"
+                  className="btn btn-sm bg-info text-white border-none hover"
+                >
+                  Sign In
             </button>
           </div>
         </form>
