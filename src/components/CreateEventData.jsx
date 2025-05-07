@@ -32,13 +32,12 @@ const CreateEventData = () => {
 
   // Simular la carga del usuario
   useEffect(() => {
-    // Simulamos un pequeño retraso para que parezca una carga real
-    const timer = setTimeout(() => {
-      setUser(MOCK_USER);
-      setLoadingUser(false);
-    }, 500);
+    const storedUser = localStorage.getItem("tssUser");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    } 
+    setLoadingUser(false);
     
-    return () => clearTimeout(timer);
   }, []);
 
   const handleChange = (e) => {
@@ -60,6 +59,8 @@ const CreateEventData = () => {
       maxAttendees: "",
       eventType: "",
     });
+    setCloudinaryResponse(null);
+    setFile(null);
   };
 
   // variable para seleccionar el archivo
@@ -72,6 +73,7 @@ const CreateEventData = () => {
     errorCloudinary,
     setErrorCloudinary,
     uploadFile,
+    setCloudinaryResponse,
   } = useCloudinaryUpload();
 
   // función para seleccionar el archivo
@@ -160,7 +162,7 @@ const CreateEventData = () => {
             {/* Avatar */}
             <div className="avatar flex-shrink-0">
               <div className="w-24 md:w-32 rounded-xl ring ring-black ring-offset-base-100 ring-offset-8">
-                <img src={user.image} alt={user.name} />
+                <img src={user.userImageUrl} alt={user.name} />
               </div>
             </div>
             {/* User Data */}
@@ -172,7 +174,7 @@ const CreateEventData = () => {
           </div>
         ) : (
           <div className="alert alert-error">
-            <span>Error loading user data</span>
+            <span>Error loading user data,please login</span>
           </div>
         )}
       </div>

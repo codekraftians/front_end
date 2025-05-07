@@ -42,6 +42,15 @@ export const getUser = async (userId) => {
     }
   };
 
+  export const loginUser = async (email, password) => {
+    try {
+      const response = await axios.get(`${API_URL}/login`, { params: { email, password } });
+      return response.data;
+    } catch (error) {
+      console.error("Error logging in user:", error);
+      throw error;
+    }
+  }
 
   
 
