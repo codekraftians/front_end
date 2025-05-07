@@ -12,7 +12,7 @@ function SelectCategory({ onSelect }) {
             <fieldset className="fieldset">
                 <select 
                     defaultValue="" 
-                    className="select select-secondary w-full text-center"
+                    className="select select-secondary text-center"
                     onChange={handleChange}
                 >
                     <option value="">All Events</option>

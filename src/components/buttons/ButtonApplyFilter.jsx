@@ -12,7 +12,7 @@ const ButtonApplyFilter = ({ onClick, selectedCategory, setFilteredEvents, searc
       // Get all events from the API
       const allEvents = await getAllEvents();
       
-      // Filter events by category and/or title
+      // Filter events by category and/or title and/or username
       let filteredEvents = allEvents;
       
       // Apply category filter if selected
@@ -27,6 +27,7 @@ const ButtonApplyFilter = ({ onClick, selectedCategory, setFilteredEvents, searc
         );
       }
       
+         
       // Update the events state with the filtered results
       if (setFilteredEvents) {
         setFilteredEvents(filteredEvents);
