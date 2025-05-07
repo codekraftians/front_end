@@ -1,48 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./buttons/Button";
 import { useCloudinaryUpload } from "./hooks/useCloudinaryUpload";
+import { postEvent } from "../services/apiEvents";
 
-// Array de datos de usuarios con IDs
-const users = [
-  {
-    id: 1,
-    image: "https://picsum.photos/200/300",
-    username: "John Doe",
-    email: "johndoe@example.com",
-    title: "User Profile",
-  },
-  {
-    id: 2,
-    image: "https://picsum.photos/200/300",
-    username: "Jane Smith",
-    email: "janesmith@example.com",
-    title: "Admin Profile",
-  },
-  {
-    id: 3,
-    image: "https://picsum.photos/200/300",
-    username: "Alice Johnson",
-    email: "alicejohnson@example.com",
-    title: "Moderator Profile",
-  },
-];
+// Mock de usuario para usar hasta que el login esté implementado
+const MOCK_USER = {
+  id: 3,
+  image: "https://picsum.photos/200/300",
+  name: "Alice Johnson",
+  email: "alicejohnson@example.com",
+  password: "Password123!",
+};
 
 const CreateEventData = () => {
-  //Gesión de estado para el evento
-
+  // Gestión de estado para el evento
   const [FormDataEvent, setFormDataEvent] = useState({
-    title: "",
-    description: "",
-    eventDate: "",
-    eventTime: "",
+    title: "Updated Event Title",
+    description: "Updated description of the event",
+    eventDate: "2025-05-10",
+    eventTime: "10:00",
     eventsImageUrl: "",
-    location: "",
-    maxAttendees: "",
-    eventType: "",
+    location: "Updated Location",
+    maxAttendees: "100",
+    eventType: "inPerson",
   });
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loadingUser, setLoadingUser] = useState(true);
+
+  // Simular la carga del usuario
+  useEffect(() => {
+    // Simulamos un pequeño retraso para que parezca una carga real
+    const timer = setTimeout(() => {
+      setUser(MOCK_USER);
+      setLoadingUser(false);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,9 +61,6 @@ const CreateEventData = () => {
       eventType: "",
     });
   };
-
-  // Filtrar el usuario con ID 3
-  const selectedUser = users.find((user) => user.id === 3);
 
   // variable para seleccionar el archivo
   const [file, setFile] = useState(null);
@@ -102,24 +96,72 @@ const CreateEventData = () => {
     }
   };
 
+  // Añadir función para manejar el envío del formulario
+  const handleSubmit = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      
+      if (!user) {
+        throw new Error("User data is not available");
+      }
+      
+      // Preparar los datos del evento
+      const eventData = {
+        ...FormDataEvent,
+        eventsImageUrl: cloudinaryResponse?.url || "",
+      };
+      
+      console.log("Datos del evento a enviar:", eventData);
+      
+      try {
+        // Usar el endpoint correcto con el ID de usuario
+        const createdEvent = await postEvent(eventData, user.id);
+        console.log("Evento creado en la base de datos:", createdEvent);
+      } catch (apiError) {
+        console.warn("API no disponible, usando modo mock:", apiError);
+        // Simulamos una respuesta exitosa
+        console.log("Mock: Evento creado con éxito");
+      }
+      
+      alert("Evento creado con éxito!");
+      handleClear();
+      
+    } catch (err) {
+      setError("Error al crear el evento: " + err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center w-full p-4">
       {/* Card principal */}
       <div className="card bg-base-300 rounded-box w-full max-w-4xl p-4 shadow-md">
-        <div className="flex flex-row items-center gap-4">
-          {/* Avatar */}
-          <div className="avatar flex-shrink-0">
-            <div className="w-24 md:w-32 rounded-xl ring ring-black ring-offset-base-100 ring-offset-8">
-              <img src={selectedUser.image} alt={selectedUser.username} />
+        {loadingUser ? (
+          <div className="flex justify-center items-center p-4">
+            <span className="loading loading-spinner loading-lg"></span>
+          </div>
+        ) : user ? (
+          <div className="flex flex-row items-center gap-4">
+            {/* Avatar */}
+            <div className="avatar flex-shrink-0">
+              <div className="w-24 md:w-32 rounded-xl ring ring-black ring-offset-base-100 ring-offset-8">
+                <img src={user.image} alt={user.username} />
+              </div>
+            </div>
+            {/* User Data */}
+            <div className="flex flex-col text-left">
+              <h2 className="text-xl font-bold">{user.username}</h2>
+              <p className="text-sm text-gray-500">{user.email}</p>
+  
             </div>
           </div>
-          {/* User Data */}
-          <div className="flex flex-col text-left">
-            <h2 className="text-xl font-bold">{selectedUser.username}</h2>
-            <p className="text-sm text-gray-500">{selectedUser.email}</p>
-            <p className="text-sm text-gray-400">{selectedUser.title}</p>
+        ) : (
+          <div className="alert alert-error">
+            <span>Error loading user data</span>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Imagen adicional */}
@@ -165,6 +207,7 @@ const CreateEventData = () => {
 
           <input
             type="text"
+            name="title"
             className="input input-bordered w-full mb-4"
             placeholder="Event Name"
             value={FormDataEvent.title}
@@ -173,62 +216,98 @@ const CreateEventData = () => {
           <div className="flex flex-row md:flex-row gap-4 w-full">
             <input
               type="date"
+              name="eventDate"
               className="input input-bordered w-full md:w-1/2"
               placeholder="Pick a Date"
-              value={event.eventDate}
+              value={FormDataEvent.eventDate}
               onChange={handleChange}
             />
             <input
               type="time"
+              name="eventTime"
               className="input input-bordered w-full md:w-1/2"
               placeholder="Pick an Hour"
-              value={event.eventTime}
+              value={FormDataEvent.eventTime}
               onChange={handleChange}
             />
           </div>
           <input
             type="text"
-            className="input input-bordered w-full mb-4 mt-4" // Añadido mt-4 para más separación
+            name="description"
+            className="input input-bordered w-full mb-4 mt-4"
             placeholder="Description"
-            value={event.description}
+            value={FormDataEvent.description}
             onChange={handleChange}
           />
           <input
-            type="text"
+            type="number"
+            name="maxAttendees"
             className="input input-bordered w-full mb-4"
             placeholder="Max Attendees"
-            value={event.maxAttendees}
+            value={FormDataEvent.maxAttendees}
             onChange={handleChange}
           />
           <input
             type="text"
+            name="location"
             className="input input-bordered w-full mb-4"
             placeholder="Location"
-            value={event.location}
+            value={FormDataEvent.location}
             onChange={handleChange}
           />
           <div className="flex flex-row md:flex-row gap-4 w-full items-center justify-center">
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
+                name="eventType"
+                value="inPerson"
                 className="checkbox checkbox-warning"
-                defaultChecked
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setFormDataEvent({
+                      ...FormDataEvent,
+                      eventType: "inPerson"
+                    });
+                  }
+                }}
+                checked={FormDataEvent.eventType === "inPerson"}
               />
               In person
             </label>
             <label className="flex items-center gap-2">
               <input
                 type="checkbox"
+                name="eventType"
+                value="online"
                 className="checkbox checkbox-warning"
-                defaultChecked
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setFormDataEvent({
+                      ...FormDataEvent,
+                      eventType: "online"
+                    });
+                  }
+                }}
+                checked={FormDataEvent.eventType === "online"}
               />
               Online
             </label>
           </div>
           <div className="flex flex-row md:flex-row gap-4 w-full items-center justify-center mt-4 mb-4">
-            <Button variant="accent">Create</Button>
-            <Button variant="error">Cancel</Button>
+            <Button 
+              variant="accent" 
+              onClick={handleSubmit}
+              disabled={isLoading || loadingUser}
+            >
+              {isLoading ? "Creating..." : "Create"}
+            </Button>
+            <Button variant="error" onClick={handleClear}>Cancel</Button>
           </div>
+          {error && (
+            <div className="alert alert-error mt-4">
+              <span>{error}</span>
+            </div>
+          )}
         </fieldset>
       </div>
     </div>

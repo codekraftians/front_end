@@ -2,15 +2,14 @@ import axios from 'axios';
 // Api URL
 const API_URL = 'http://localhost:8080/api/v1/events';
 
-export const postEvent = async (event) => {
+export const postEvent = async (event, userId) => {
     try {
-      const response = await axios.post(API_URL, event);
+      const response = await axios.post(`${API_URL}/user/${userId}`, event);
       return response.data;
     } catch (error) {
       console.error("Error posting event:", error);
       throw error;
     }
-
 };
 
 export const getEventById = async (id) => {

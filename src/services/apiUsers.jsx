@@ -15,29 +15,26 @@ export const postUser = async (user) => {
 };
 
 export const updateUser = async (userId, newUser) => {
-        try {
-         
-          await axios.put(`${API_URL}/${stringId}`, newUser); // revisar porque puede dar error 
-        } catch (error) {
-          console.error("Error updating user:", error);
-          throw error;
-        }
+    try {
+      await axios.put(`${API_URL}/${userId}`, newUser);
+    } catch (error) {
+      console.error("Error updating user:", error);
+      throw error;
+    }
 };
-
 
 export const deleteUser = async (userId) => {
     try {
-   
-      await axios.delete(`${API_URL}/${stringId}`);
+      await axios.delete(`${API_URL}/${userId}`);
     } catch (error) {
-      console.error("Error deleting reading:", error);
+      console.error("Error deleting user:", error);
       throw error;
     }
 };
 
 export const getUser = async (userId) => {
     try {
-      const response = await axios.get(`${API_URL}/${stringId}`);
+      const response = await axios.get(`${API_URL}/${userId}`);
       return response.data;
     } catch (error) {
       console.error("Error getting users:", error);
