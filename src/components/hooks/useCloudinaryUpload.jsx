@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import axios from 'axios';
+
 
 const CLOUD_NAME = 'dbhpzavfx'; // Tu Cloud Name que aparece en la URL de Cloudinary cuando se configura el proyecto
 const UPLOAD_PRESET = 'techsafespace'; // Tu Upload Preset que se configura en Cloudinary para permitir cargas sin autenticación
@@ -43,19 +45,20 @@ export const useCloudinaryUpload = () => {
 
       try {
         // se puede utilizar fech o axios para subir el archivo
-        const response = await fetch(
+        const response = await axios.post(
           `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`,
+          formData,
           {
-            method: 'POST',
-            body: formData,
             headers: {
               'X-Unique-Upload-Id': uniqueUploadId,
-              'Content-Range': contentRange,
+              'Content-Range': contentRange, 
             },
+            maxContentLength: Infinity,
+            maxBodyLength: Infinity,
           }
         );
 
-        if (!response.ok) {
+        if (!response.data || response.status !== 200) {
           throw new Error('Error al subir un fragmento.');
         }
 
@@ -71,7 +74,7 @@ export const useCloudinaryUpload = () => {
           setUploadComplete(true);
           setUploading(false);
           // Respuesta json de Cloudinary con la información del archivo subido
-          const result = await response.json();
+          const result = await response.data;
           console.log('Upload complete:', result);
           setCloudinaryResponse(result);
         }
