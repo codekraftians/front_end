@@ -1,33 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// Array de datos de usuarios con IDs
-const users = [
-  {
-    id: 1,
-    image: "https://picsum.photos/200/300",
-    username: "John Doe",
-    email: "johndoe@example.com",
-    title: "User Profile",
-  },
-  {
-    id: 2,
-    image: "https://picsum.photos/200/300",
-    username: "Jane Smith",
-    email: "janesmith@example.com",
-    title: "Admin Profile",
-  },
-  {
-    id: 3,
-    image: "https://picsum.photos/200/300",
-    username: "Alice Johnson",
-    email: "alicejohnson@example.com",
-    title: "Moderator Profile",
-  },
-];
+
 
 const Navbar = () => {
-  const selectedUser = users.find((user) => user.id === 3);
+  
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("tssUser");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+
+  }, []);
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -61,13 +47,17 @@ const Navbar = () => {
         </ul>
 
         {/* Avatar */}
-        <div className="avatar">
-          <div className="w-10 md:w-12 rounded-full ring ring-black ring-offset-base-100 ring-offset-2">
-            <Link to="/user/data/all">
-              <img src={selectedUser.image} alt={selectedUser.username} />
-            </Link>
-          </div>
-        </div>
+        {
+          user && user.userImageUrl ?
+            (<div className="avatar">
+              <div className="w-10 md:w-12 rounded-full ring ring-black ring-offset-base-100 ring-offset-2">
+                <Link to="/user/data/all">
+                  <img src={user.userImageUrl} alt={user.name} />
+                </Link>
+              </div>
+            </div>)
+            : <></>
+        }
       </div>
     </div>
   );
