@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importa useNavigate para redirección
 import { getAllEvents } from "../services/apiEvents";
 
 const Card = () => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Hook para redirigir
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -29,6 +31,10 @@ const Card = () => {
     return <p className="text-center text-red-500">{error}</p>;
   }
 
+  const handleJoin = (id) => {
+    navigate(`/evento/${id}`); // Redirige a la ruta dinámica con el ID del evento
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {events.map((event) => (
@@ -46,7 +52,12 @@ const Card = () => {
             </h2>
             <p>{event.description}</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary text-base">Join!</button>
+              <button
+                className="btn btn-primary text-base"
+                onClick={() => handleJoin(event.id)} // Llama a handleJoin con el ID del evento
+              >
+                Join!
+              </button>
             </div>
           </div>
         </div>
