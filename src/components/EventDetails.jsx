@@ -85,7 +85,8 @@ const EventDetails = () => {
             />
           </figure>
           <div className="card-body">
-            <div className="badge badge-secondary w-fit">{event.eventType}</div>
+            {/* Badge de tipo de evento arriba del título */}
+            <div className="badge badge-secondary w-fit mb-2">{event.eventType}</div>
             <h2 className="card-title text-lg">{event.title}</h2>
             <p className="text-sm text-gray-500">
               {formatearFechaHora(event.eventDate, event.eventTime)}
