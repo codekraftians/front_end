@@ -15,14 +15,14 @@ const MOCK_USER = {
 const CreateEventData = () => {
   // Gestión de estado para el evento
   const [FormDataEvent, setFormDataEvent] = useState({
-    title: "Updated Event Title",
-    description: "Updated description of the event",
-    eventDate: "2025-05-10",
-    eventTime: "10:00",
+    title: "",
+    description: "",
+    eventDate: "",
+    eventTime: "",
     eventsImageUrl: "",
-    location: "Updated Location",
-    maxAttendees: "100",
-    eventType: "inPerson",
+    location: "",
+    maxAttendees: "",
+    eventType: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -108,8 +108,21 @@ const CreateEventData = () => {
       
       // Preparar los datos del evento
       const eventData = {
-        ...FormDataEvent,
-        eventsImageUrl: cloudinaryResponse?.url || "",
+          title: FormDataEvent.title,
+          description: FormDataEvent.description,
+          eventDate: FormDataEvent.eventDate,
+          eventTime: FormDataEvent.eventTime,
+          eventsImageUrl: cloudinaryResponse?.url || "",
+          location: FormDataEvent.location,
+          maxAttendees: FormDataEvent.maxAttendees,
+          eventType: FormDataEvent.eventType === "inPerson" ? "IN_PERSON" : "ONLINE", 
+          user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          password: user.password,
+          userImageUrl: user.image, 
+        }
       };
       
       console.log("Datos del evento a enviar:", eventData);
@@ -147,12 +160,12 @@ const CreateEventData = () => {
             {/* Avatar */}
             <div className="avatar flex-shrink-0">
               <div className="w-24 md:w-32 rounded-xl ring ring-black ring-offset-base-100 ring-offset-8">
-                <img src={user.image} alt={user.username} />
+                <img src={user.image} alt={user.name} />
               </div>
             </div>
             {/* User Data */}
             <div className="flex flex-col text-left">
-              <h2 className="text-xl font-bold">{user.username}</h2>
+              <h2 className="text-xl font-bold">{user.name}</h2>
               <p className="text-sm text-gray-500">{user.email}</p>
   
             </div>
