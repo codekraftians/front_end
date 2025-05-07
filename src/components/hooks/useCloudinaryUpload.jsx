@@ -96,5 +96,6 @@ export const useCloudinaryUpload = () => {
     error,
     setError,
     uploadFile,
+    setCloudinaryResponse
   };
 };

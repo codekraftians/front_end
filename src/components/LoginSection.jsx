@@ -1,11 +1,18 @@
 import React from 'react';
+import { loginUser } from '../services/apiUsers';
+import { useNavigate } from "react-router-dom";
 
 
 const LoginSection = () => {
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target[0].value); 
-    console.log(e.target[1].value);
+    const responseUser = await loginUser(e.target[0].value, e.target[1].value);
+    if (responseUser) {
+      localStorage.setItem('tssUser', JSON.stringify(responseUser));
+      navigate('/explore');
+    } 
     handleClear();
   };
 
