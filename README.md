@@ -107,7 +107,7 @@ src/
 ## 👩‍💻 Autoría y contribución
 
 Proyecto realizado por el equipo de **Mujeres y disidentes - CodeCraft F5**  
-Contacto: `tu-email@ejemplo.com`
+Contacto: `factoriaF5@Barcelona`
 
 ---
 
