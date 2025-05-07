@@ -17,7 +17,7 @@ Este proyecto no es solo una plataforma técnica, sino una declaración de inten
 | Larissa          | [@nombre1](https://github.com/saudlari)      | 
 | Milena           | [@nombre2](https://github.com/MilenaOcoro)      | 
 | Einar            | [@nombre2](https://github.com/MilenaOcoro)      | 
-| Einar            | [@nombre2](https://github.com/rieradipe)      | 
+| Alba             | [@nombre2](https://github.com/rieradipe)      | 
 
 
 ---
