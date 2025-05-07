@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getEventById } from "../services/apiEvents"; // Asegúrate de tener esta función en tu API
+import { getEventById } from "../services/apiEvents";
+import Header from "../components/Navbar";
+import Footer from "../components/Footer";
+import Button from "../components/buttons/Button";
+import avatarImg from "../assets/Imagen.png";
 
 const EventDetails = () => {
-  const { id } = useParams(); // Obtiene el ID del evento desde la URL
+  const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,10 +15,13 @@ const EventDetails = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const data = await getEventById(id); // Llama a la API para obtener los detalles del evento
+        const data = await getEventById(id);
         setEvent(data);
+        console.table(data); // Muestra los datos del evento en la consola
       } catch (err) {
-        setError("Failed to fetch event details");
+        setError(
+          err.response?.data?.message || "Failed to fetch event details"
+        );
       } finally {
         setIsLoading(false);
       }
@@ -23,22 +30,84 @@ const EventDetails = () => {
     fetchEvent();
   }, [id]);
 
+  const formatearFechaHora = (fecha, hora) =>
+    new Date(`${fecha}T${hora}`).toLocaleString("es-ES", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
   if (isLoading) {
-    return <p className="text-center">Loading event details...</p>;
+    return <p className="text-center">Cargando detalles del evento...</p>;
   }
 
   if (error) {
     return <p className="text-center text-red-500">{error}</p>;
   }
 
+  if (!event) {
+    return <p className="text-center">No se encontró el evento</p>;
+  }
+
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold">{event.title}</h1>
-      <img src={event.imageUrl} alt={event.title} className="my-4" />
-      <p className="text-lg">{event.description}</p>
-      <p className="text-sm text-gray-500">Date: {event.date}</p>
-      <p className="text-sm text-gray-500">Location: {event.location}</p>
-    </div>
+    <>
+      <Header />
+      <main className="min-h-screen bg-base-200 p-4 flex flex-col items-center gap-4">
+        {/* Usuario */}
+        <div className="w-full max-w-md bg-base-100 p-4 rounded-lg shadow flex items-center gap-4">
+          <div className="avatar">
+            <div className="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img
+                src={event.user?.userImageUrl || avatarImg}
+                alt="Avatar"
+                className="object-cover"
+              />
+            </div>
+          </div>
+          <div>
+            <p className="text-lg font-bold leading-tight">
+              {event.user?.name}
+            </p>
+            <p className="text-sm text-gray-500">{event.user?.email}</p>
+          </div>
+        </div>
+
+        {/* Tarjeta del evento */}
+        <div className="card w-full max-w-md bg-base-100 shadow-lg">
+          <figure>
+            <img
+              src={event.eventsImageUrl || avatarImg} // Usa la imagen del evento o una predeterminada
+              alt={event.title}
+              className="w-full h-48 object-cover"
+            />
+          </figure>
+          <div className="card-body">
+            <div className="badge badge-secondary w-fit">{event.eventType}</div>
+            <h2 className="card-title text-lg">{event.title}</h2>
+            <p className="text-sm text-gray-500">
+              {formatearFechaHora(event.eventDate, event.eventTime)}
+            </p>
+            <p className="text-sm text-gray-500">{event.location}</p>
+            <div className="mt-2">
+              <p className="text-info text-sm font-semibold">
+                Quedan {event.maxAttendees} plazas
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Botón de volver */}
+        <div className="mt-4">
+          <Button variant="ghost" onClick={() => window.history.back()}>
+            Volver
+          </Button>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 };
 

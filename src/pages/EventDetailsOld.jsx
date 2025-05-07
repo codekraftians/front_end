@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Button from "../components/buttons/Button";
 import avatarImg from "../assets/Imagen.png";
 
-function EventDetails() {
+function EventDetailsOld() {
   const eventoMock = {
     titulo: "Fiesta HashMap 2024",
     fecha: "2025-05-01T19:00:00",
@@ -86,4 +86,4 @@ function EventDetails() {
   );
 }
 
-export default EventDetails;
+export default EventDetailsOld;

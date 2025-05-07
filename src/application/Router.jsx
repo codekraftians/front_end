@@ -9,9 +9,7 @@ import UpdateEvent from "../pages/UpdateEvent";
 import AllUserData from "../pages/AllUserData";
 
 import EditEvents from "../pages/EditEvents";
-import EventDetails from "../pages/EventDetails";
-
-
+import EventDetails from "../components/EventDetails";
 
 function Router() {
   return (
@@ -29,10 +27,6 @@ function Router() {
 
           <Route path="/edit-events" element={<EditEvents />} />
           <Route path="/evento/:id" element={<EventDetails />} />
-
-      
-
-
         </Routes>
       </div>
     </BrowserRouter>
