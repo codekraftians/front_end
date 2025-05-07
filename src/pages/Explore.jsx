@@ -41,7 +41,7 @@ function Explore() {
   return (
     <>
       <Navbar />
-      <SearchFilter />
+      <SearchFilter setEvents={setEvents} />
       
       {loading ? (
         <div className="flex justify-center items-center h-64">
