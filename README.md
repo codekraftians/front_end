@@ -9,7 +9,7 @@ Este proyecto no es solo una plataforma técnica, sino una declaración de inten
 
 ## 👩‍💻 Nuestro equipo
 
-![Equipo TechSafeSpace](/src/assets/Imagen.png)
+
 
 | Nombre           | GitHub                                      |                                     
 |------------------|---------------------------------------------|
