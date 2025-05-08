@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "./buttons/Button";
 
-// Array de datos de usuarios con IDs
 const users = [
   {
     id: 1,
@@ -27,12 +26,10 @@ const users = [
 ];
 
 const UpdateEventData = () => {
-  // Filtrar el usuario con ID 3
   const selectedUser = users.find((user) => user.id === 3);
 
   return (
     <div className="flex flex-col items-center w-full p-4">
-      {/* Card principal */}
       <div className="card bg-base-300 rounded-box w-full max-w-4xl p-4 shadow-md">
         <div className="flex flex-row items-center gap-4">
           {/* Avatar */}
@@ -41,7 +38,7 @@ const UpdateEventData = () => {
               <img src={selectedUser.image} alt={selectedUser.username} />
             </div>
           </div>
-          {/* User Data */}
+
           <div className="flex flex-col text-left">
             <h2 className="text-xl font-bold">{selectedUser.username}</h2>
             <p className="text-sm text-gray-500">{selectedUser.email}</p>
@@ -50,7 +47,6 @@ const UpdateEventData = () => {
         </div>
       </div>
 
-      {/* Imagen adicional */}
       <div className="card bg-base-300 rounded-box w-full max-w-4xl mt-4 shadow-md">
         <figure>
           <img
@@ -61,7 +57,6 @@ const UpdateEventData = () => {
         </figure>
       </div>
 
-      {/* Formulario */}
       <div className="card bg-base-300 rounded-box w-full max-w-4xl mt-4 shadow-md p-4">
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box p-4">
           <input

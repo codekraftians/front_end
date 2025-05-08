@@ -86,17 +86,17 @@ const RegisterSection = () => {
 
           <div className="form-control mb-4">
             <label className="label">
-              <span className="label-text text-sm text-gray-600">URL de imagen de perfil</span>
+              <span className="label-text text-sm text-gray-600">Profile image URL</span>
             </label>
             <input
               type="url"
               name="userImageUrl"
-              placeholder="https://ejemplo.com/mi-imagen.jpg"
+              placeholder="https://example.com/my-image.jpg"
               className="input input-bordered w-full text-sm"
               value={formData.userImageUrl}
               onChange={handleChange}
             />
-            <div className="validator-hint text-xs text-gray-500 text-left">Opcional: Ingresa la URL de tu imagen de perfil</div>
+            <div className="validator-hint text-xs text-gray-500 text-left">Optional: Enter your profile image URL</div>
           </div>
 
           <div className="flex justify-center gap-4">

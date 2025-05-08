@@ -50,3 +50,13 @@ export const updateEvent = async (id, event) => {
     throw error;
   }
 };
+
+export const getFilteredEvents = async (filterParams) => {
+  try {
+    const response = await axios.get(`${API_URL}/filter`, { params: filterParams });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting filtered events:", error);
+    throw error;
+  }
+};

@@ -6,22 +6,32 @@ import avatarImg from "../assets/Imagen.png";
 
 function EventDetailsOld() {
   const eventoMock = {
-    titulo: "Fiesta HashMap 2024",
-    fecha: "2025-05-01T19:00:00",
-    modalidad: "Presencial",
-    ubicacion: "La Raposa",
-    creadoPor: {
+    title: "Fiesta HashMap 2024",
+    date: "2025-05-01T19:00:00",
+    mode: "Presencial",
+    location: "La Raposa",
+    createdBy: {
       nombre: "UserName",
       email: "email@email.com",
     },
-    plazasDisponibles: 15,
+    availableSeats: 15,
   };
 
-  const formatearFecha = (fechaISO) =>
+  const formatDate = (fechaISO) =>
     new Date(fechaISO).toLocaleString("es-ES", {
       weekday: "long",
       day: "numeric",
       month: "long",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+  const formatearFechaHora = (fecha, hora) =>
+    new Date(`${fecha}T${hora}`).toLocaleString("es-ES", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
       hour: "2-digit",
       minute: "2-digit",
     });
@@ -31,7 +41,6 @@ function EventDetailsOld() {
       <Header />
 
       <main className="min-h-screen bg-base-200 p-4 flex flex-col items-center gap-4">
-        {/* Usuario */}
         <div className="w-full max-w-md bg-base-100 p-4 rounded-lg shadow flex items-center gap-4">
           <div className="avatar">
             <div className="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -40,16 +49,15 @@ function EventDetailsOld() {
           </div>
           <div>
             <p className="text-lg font-bold leading-tight">
-              {eventoMock.creadoPor.nombre}
+              {eventoMock.createdBy.nombre}
             </p>
             <p className="text-sm text-gray-500">
-              {eventoMock.creadoPor.email}
+              {eventoMock.createdBy.email}
             </p>
             <p className="text-xs text-gray-400">••••••••</p>
           </div>
         </div>
 
-        {/* Tarjeta del evento */}
         <div className="card w-full max-w-md bg-base-100 shadow-lg">
           <figure>
             <img
@@ -60,23 +68,22 @@ function EventDetailsOld() {
           </figure>
           <div className="card-body">
             <div className="badge badge-secondary w-fit">New</div>
-            <h2 className="card-title text-lg">{eventoMock.titulo}</h2>
+            <h2 className="card-title text-lg">{eventoMock.title}</h2>
             <p className="text-sm text-gray-500">
-              {formatearFecha(eventoMock.fecha)} · {eventoMock.modalidad}
+              {formatDate(eventoMock.date)} · {eventoMock.mode}
             </p>
-            <p className="text-sm text-gray-500">{eventoMock.ubicacion}</p>
+            <p className="text-sm text-gray-500">{eventoMock.location}</p>
             <div className="mt-2">
               <p className="text-info text-sm font-semibold">
-                Quedan {eventoMock.plazasDisponibles} plazas
+                Remaining {eventoMock.availableSeats} seats
               </p>
             </div>
           </div>
         </div>
 
-        {/* Botón de volver */}
         <div className="mt-4">
           <Button variant="ghost" onClick={() => window.history.back()}>
-            Volver
+            Back
           </Button>
         </div>
       </main>
