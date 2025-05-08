@@ -56,9 +56,11 @@ function Explore() {
           <p className="text-gray-500">Be the first to create an event!</p>
         </div>
       ) : (
-        <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+        <div className="p-6 flex flex-wrap justify-center gap-6 space-y-6 space-x-6">
           {currentEvents.map((event) => (
-            <Card key={event.id} event={event} />
+            <div key={event.id} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-md">
+              <Card event={event} />
+            </div>
           ))}
         </div>
       )}

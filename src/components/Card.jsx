@@ -11,7 +11,7 @@ const Card = ({ event }) => {
   };
 
   return (
-    <div className="card bg-base-100 w-full max-w-sm shadow-sm hover:shadow-xl transition-shadow duration-300 ease-in-out">
+    <div className="card w-full bg-base-100 shadow-xl">
       <figure className="relative">
         <img
           src={
@@ -31,8 +31,8 @@ const Card = ({ event }) => {
         </div>
       </figure>
 
-      <div className="card-body p-4">
-        <h2 className="card-title font-bold">
+     <div className="card-body p-6 ">
+        <h2 className="card-title font-bold text-xl">
           {event.title}
           {isNew(event.createdAt) && (
             <div className="badge badge-accent ml-2">NEW</div>
@@ -105,7 +105,7 @@ const Card = ({ event }) => {
           </div>
         </div>
 
-        <div className="card-actions justify-end mt-4">
+        <div className="mt-4">
           <Link to={`/evento/${event.id}`} className="w-full">
             <button className="btn btn-primary w-full">Join!</button>
           </Link>

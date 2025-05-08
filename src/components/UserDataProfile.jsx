@@ -11,10 +11,7 @@ function UserDataProfile() {
     if (storedUser) {
       setUserData(JSON.parse(storedUser));
     }
-
   }, []);
-
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,10 +29,16 @@ function UserDataProfile() {
           setIsEditable(false);
         })
         .catch((error) => {
-          if (error.response && error.response.data && error.response.data.errors) {
-            const errorMessages = error.response.data.errors.map((err) => err.defaultMessage).join("\n\n, ");
+          if (
+            error.response &&
+            error.response.data &&
+            error.response.data.errors
+          ) {
+            const errorMessages = error.response.data.errors
+              .map((err) => err.defaultMessage)
+              .join("\n\n, ");
             setErrorUser(errorMessages);
-          }else {
+          } else {
             setErrorUser("An error occurred while updating the user data.");
           }
         });
@@ -44,92 +47,90 @@ function UserDataProfile() {
 
   return (
     <div className="flex flex-col items-center w-full p-4">
-      {
-        userData ? (
-          <div className="card bg-base-300 rounded-box w-full max-w-md p-6 shadow-md">
+      {userData ? (
+        <div className="card bg-base-300 rounded-box w-full max-w-md p-6 shadow-md">
+          {errorUser && (
+            <div className="text-red-500 mb-4 text-sm">{errorUser}</div>
+          )}
 
-            {errorUser && <div className="text-red-500 mb-4 text-sm">{errorUser}</div>}
-
-            {/* Imagen del usuario */}
-            <div className="flex flex-col items-center mb-6">
-              <div className="avatar">
-                <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                  <img src={userData.userImageUrl} alt="User Avatar" />
-                </div>
-              </div>
-              <h2 className="text-xl font-bold mt-4">{userData.name}</h2>
-            </div>
-
-            {/* Datos del usuario */}
-            <div className="flex flex-col gap-4">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={userData.email}
-                  onChange={handleInputChange}
-                  disabled={!isEditable}
-                  className={`input input-bordered w-full ${isEditable ? "bg-white" : "bg-gray-100"
-                    }`}
-                />
-              </div>
-
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={userData.name}
-                  onChange={handleInputChange}
-                  disabled={!isEditable}
-                  className={`input input-bordered w-full ${isEditable ? "bg-white" : "bg-gray-100"
-                    }`}
-                />
-              </div>
-
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  value={userData.password}
-                  onChange={handleInputChange}
-                  disabled={!isEditable}
-                  className={`input input-bordered w-full ${isEditable ? "bg-white" : "bg-gray-100"
-                    }`}
-                />
+          <div className="flex flex-col items-center mb-6">
+            <div className="avatar">
+              <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <img src={userData.userImageUrl} alt="User Avatar" />
               </div>
             </div>
+            <h2 className="text-xl font-bold mt-4">{userData.name}</h2>
+          </div>
 
-            {/* Botones */}
-            <div className="flex justify-end gap-4 mt-6">
-              <button className="btn btn-primary" onClick={toggleEdit}>
-                {isEditable ? "Save" : "Edit"}
+          <div className="flex flex-col gap-4">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={userData.email}
+                onChange={handleInputChange}
+                disabled={!isEditable}
+                className={`input input-bordered w-full ${
+                  isEditable ? "bg-white" : "bg-gray-100"
+                }`}
+              />
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={userData.name}
+                onChange={handleInputChange}
+                disabled={!isEditable}
+                className={`input input-bordered w-full ${
+                  isEditable ? "bg-white" : "bg-gray-100"
+                }`}
+              />
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                name="password"
+                value={userData.password}
+                onChange={handleInputChange}
+                disabled={!isEditable}
+                className={`input input-bordered w-full ${
+                  isEditable ? "bg-white" : "bg-gray-100"
+                }`}
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-4 mt-6">
+            <button className="btn btn-primary" onClick={toggleEdit}>
+              {isEditable ? "Save" : "Edit"}
+            </button>
+            {isEditable && (
+              <button
+                className="btn btn-secondary"
+                onClick={() => setIsEditable(false)}
+              >
+                Cancel
               </button>
-              {isEditable && (
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => setIsEditable(false)}
-                >
-                  Cancel
-                </button>
-              )}
-            </div>
+            )}
           </div>
-        ) : (
-          <div className="alert alert-error">
-            <span>Error loading user data,please login</span>
-          </div>
-        )
-      }
-
+        </div>
+      ) : (
+        <div className="alert alert-error">
+          <span>Error loading user data,please login</span>
+        </div>
+      )}
     </div>
   );
 }
