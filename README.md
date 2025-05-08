@@ -101,13 +101,7 @@ src/
 
 ---
 
-## 🧪 Pruebas y comprobaciones
 
-- El componente `calendar-ctx` se registra una única vez en `setupCally.js`
-- El calendario funciona sin errores de doble registro
-- Los datos de usuario pueden ser enviados correctamente al backend
-
----
 
 ## 👩‍💻 Autoría y contribución
 
@@ -118,7 +112,7 @@ Sitio web: [FactoríaF5](https://factoriaf5.org/)
 
 ## 🌍 Impacto social y visión a futuro
 
-TeachSafeSpace busca ir más allá del desarrollo de software. Este proyecto representa un punto de encuentro para mujeres que desean formarse, colaborar y crecer juntas en el mundo tecnológico.
+TechSafeSpace busca ir más allá del desarrollo de software. Este proyecto representa un punto de encuentro para mujeres que desean formarse, colaborar y crecer juntas en el mundo tecnológico.
 
 Nuestro objetivo es:
 
