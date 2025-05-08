@@ -1,6 +1,6 @@
-# 🤝 TeachSafeSpace - Comunidad Tech para Mujeres
+# 🤝 TechSafeSpace - Comunidad Tech para Mujeres
 
-**TeachSafeSpace** es una iniciativa que nace de la necesidad de crear un espacio seguro, accesible y sororo para mujeres y disidencias en el sector tecnológico.
+**TechSafeSpace** es una iniciativa que nace de la necesidad de crear un espacio seguro, accesible y sororo para mujeres y disidencias en el sector tecnológico.
 
 Este proyecto no es solo una plataforma técnica, sino una declaración de intenciones: visibilizar, acompañar y empoderar a quienes tradicionalmente han sido infrarrepresentadas en el mundo digital. Desde el código hasta la comunidad, todo está pensado para fomentar la inclusión y el apoyo mutuo.
 
@@ -9,24 +9,30 @@ Este proyecto no es solo una plataforma técnica, sino una declaración de inten
 
 ## 👩‍💻 Nuestro equipo
 
-![Equipo TeachSafeSpace](.https://videos.openai.com/vg-assets/assets%2Ftask_01jtpamehxfkabncc953ejex0x%2F1746653641_img_0.webp?st=2025-05-07T20%3A05%3A00Z&se=2025-05-13T21%3A05%3A00Z&sks=b&skt=2025-05-07T20%3A05%3A00Z&ske=2025-05-13T21%3A05%3A00Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=R3i4Y0vNiK8tsG1fnPJfSzUDWTY3kIZw30dl%2BV5m6QM%3D&az=oaivgprodscus)
+![Equipo TechSafeSpace](.https://videos.openai.com/vg-assets/assets%2Ftask_01jtpamehxfkabncc953ejex0x%2F1746653641_img_0.webp?st=2025-05-07T20%3A05%3A00Z&se=2025-05-13T21%3A05%3A00Z&sks=b&skt=2025-05-07T20%3A05%3A00Z&ske=2025-05-13T21%3A05%3A00Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=R3i4Y0vNiK8tsG1fnPJfSzUDWTY3kIZw30dl%2BV5m6QM%3D&az=oaivgprodscus)
 
 | Nombre           | GitHub                                      |                                     
 |------------------|---------------------------------------------|
-| Mariona          | [@tuGitHub](cuyass)    | 
-| Larissa          | [@nombre1](https://github.com/saudlari)      | 
-| Milena           | [@nombre2](https://github.com/MilenaOcoro)      | 
-| Einar            | [@nombre2](https://github.com/MilenaOcoro)      | 
-| Alba             | [@nombre2](https://github.com/rieradipe)      | 
+| Mariona          | [@cuyass](https://github.com/cuyass)    | 
+| Larissa          | [@saudlari](https://github.com/saudlari)      | 
+| Milena           | [@MilenaOcoro](https://github.com/MilenaOcoro)      | 
+| Einar            | [@einartech](https://github.com/einartech)      | 
+| Alba             | [@rieradipe](https://github.com/rieradipe)      | 
 
+---
+
+## Enlace al backend
+
+[Backend](https://github.com/codekraftians/backend)
 
 ---
 
 ## 🚀 Tecnologías utilizadas
 
-- React
-- Vite
-- TailwindCSS
+- Javascript ES6
+- React 19
+- Vite 6.3.1
+- TailwindCSS 4.1.4
 - DaisyUI
 - Axios
 - Web Components (`calendar-ctx`)
@@ -38,8 +44,7 @@ Este proyecto no es solo una plataforma técnica, sino una declaración de inten
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/frontend-eventos-inclusivos.git
-cd frontend-eventos-inclusivos
+git clone https://github.com/codekraftians/front_end.git
 ```
 
 2. Instala las dependencias:
@@ -107,7 +112,7 @@ src/
 ## 👩‍💻 Autoría y contribución
 
 Proyecto realizado por el equipo de **Mujeres y disidentes - CodeCraft F5**  
-Contacto: `factoriaF5@Barcelona`
+Sitio web: [FactoríaF5](https://factoriaf5.org/)
 
 ---
 
