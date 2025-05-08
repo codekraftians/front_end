@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import SelectCategory from "./SelectCategory";
 import ButtonApplyFilter from "../buttons/ButtonApplyFilter";
 
 const SearchFilter = ({ setEvents }) => {
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [searchTitle, setSearchTitle] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -29,8 +29,8 @@ const SearchFilter = ({ setEvents }) => {
         className="input input-bordered"
       />
       <SelectCategory onSelect={handleCategoryChange} />
-      <ButtonApplyFilter 
-        onClick={handleApplyFilters} 
+      <ButtonApplyFilter
+        onClick={handleApplyFilters}
         selectedCategory={selectedCategory}
         searchTitle={searchTitle}
         setFilteredEvents={setEvents}

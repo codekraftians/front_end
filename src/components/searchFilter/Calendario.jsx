@@ -4,8 +4,8 @@ export default function Calendario() {
   useEffect(() => {
     if (typeof window !== "undefined" && !customElements.get("calendar-ctx")) {
       import("cally")
-        .then(() => console.log("Cally cargado"))
-        .catch((err) => console.error("Error al cargar cally:", err));
+        .then(() => console.log("Cally loaded"))
+        .catch((err) => console.error("Error loading cally:", err));
     }
   }, []);
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "cally"; // Importa Cally
+import "cally"; 
 
 export default function PickDay() {
   const [selectedDate, setSelectedDate] = useState("Pick a date");

@@ -3,7 +3,7 @@ import Button from "./buttons/Button";
 import { useCloudinaryUpload } from "./hooks/useCloudinaryUpload";
 import { postEvent } from "../services/apiEvents";
 
-// Mock de usuario para usar hasta que el login esté implementado
+
 const MOCK_USER = {
   id: 3,
   image: "https://picsum.photos/200/300",
@@ -13,7 +13,7 @@ const MOCK_USER = {
 };
 
 const CreateEventData = () => {
-  // Gestión de estado para el evento
+ 
   const [FormDataEvent, setFormDataEvent] = useState({
     title: "",
     description: "",
@@ -30,7 +30,7 @@ const CreateEventData = () => {
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
 
-  // Simular la carga del usuario
+ 
   useEffect(() => {
     const storedUser = localStorage.getItem("tssUser");
     if (storedUser) {
@@ -63,9 +63,9 @@ const CreateEventData = () => {
     setFile(null);
   };
 
-  // variable para seleccionar el archivo
+  
   const [file, setFile] = useState(null);
-  // hook para subir el archivo a Cloudinary
+ 
   const {
     uploading,
     uploadComplete,
@@ -83,7 +83,7 @@ const CreateEventData = () => {
     if (selectedFile && selectedFile.size > 10 * 1024 * 1024) {
       setFile(null);
       setErrorCloudinary(
-        "El archivo supera los 10MB. Por favor, selecciona uno más pequeño."
+        "The file exceeds 10MB. Please select a smaller one."
       );
     } else {
       setFile(selectedFile);
@@ -91,14 +91,13 @@ const CreateEventData = () => {
     }
   };
 
-  // funcion en la que se sube el archivo a Cloudinary
   const handleUpload = () => {
     if (file) {
       uploadFile(file);
     }
   };
 
-  // Añadir función para manejar el envío del formulario
+ 
   const handleSubmit = async () => {
     try {
       setIsLoading(true);
@@ -108,7 +107,7 @@ const CreateEventData = () => {
         throw new Error("User data is not available");
       }
       
-      // Preparar los datos del evento
+     
       const eventData = {
           title: FormDataEvent.title,
           description: FormDataEvent.description,
@@ -130,12 +129,12 @@ const CreateEventData = () => {
       console.log("Datos del evento a enviar:", eventData);
       
       try {
-        // Usar el endpoint correcto con el ID de usuario
+       
         const createdEvent = await postEvent(eventData, user.id);
         console.log("Evento creado en la base de datos:", createdEvent);
       } catch (apiError) {
         console.warn("API no disponible, usando modo mock:", apiError);
-        // Simulamos una respuesta exitosa
+      
         console.log("Mock: Evento creado con éxito");
       }
       
@@ -143,7 +142,7 @@ const CreateEventData = () => {
       handleClear();
       
     } catch (err) {
-      setError("Error al crear el evento: " + err.message);
+      setError("Error creating event: " + err.message);
     } finally {
       setIsLoading(false);
     }
@@ -151,7 +150,7 @@ const CreateEventData = () => {
 
   return (
     <div className="flex flex-col items-center w-full p-4">
-      {/* Card principal */}
+     
       <div className="card bg-base-300 rounded-box w-full max-w-4xl p-4 shadow-md">
         {loadingUser ? (
           <div className="flex justify-center items-center p-4">
@@ -159,13 +158,13 @@ const CreateEventData = () => {
           </div>
         ) : user ? (
           <div className="flex flex-row items-center gap-4">
-            {/* Avatar */}
+           
             <div className="avatar flex-shrink-0">
               <div className="w-24 md:w-32 rounded-xl ring ring-black ring-offset-base-100 ring-offset-8">
                 <img src={user.userImageUrl} alt={user.name} />
               </div>
             </div>
-            {/* User Data */}
+          
             <div className="flex flex-col text-left">
               <h2 className="text-xl font-bold">{user.name}</h2>
               <p className="text-sm text-gray-500">{user.email}</p>
@@ -174,30 +173,30 @@ const CreateEventData = () => {
           </div>
         ) : (
           <div className="alert alert-error">
-            <span>Error loading user data,please login</span>
+            <span>Error loading user data, please login</span>
           </div>
         )}
       </div>
 
-      {/* Imagen adicional */}
+     
       <div className="card bg-base-300 rounded-box w-full max-w-4xl mt-4 shadow-md">
         {cloudinaryResponse && (
           <figure>
             <img
               width={500}
               src={cloudinaryResponse?.url}
-              alt="Foto del evento"
+              alt="Event photo"
               className="rounded-lg"
             />
           </figure>
         )}
       </div>
 
-      {/* Formulario */}
+     
       <div className="card bg-base-300 rounded-box w-full max-w-4xl mt-4 shadow-md p-4">
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box p-4">
           <div className="flex flex-row md:flex-row gap-4 w-full">
-            {/* etiqueta para seleccionar archivo */}
+        
             <input
               type="file"
               className="file-input"
@@ -210,7 +209,7 @@ const CreateEventData = () => {
                 <span>{errorCloudinary} </span>
               </div>
             )}
-            {/* botón para subir el archivo */}
+           
             <Button
               variant="accent"
               onClick={handleUpload}

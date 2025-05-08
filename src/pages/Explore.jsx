@@ -10,8 +10,7 @@ function Explore() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-  // Paginación
+
   const eventsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -42,7 +41,7 @@ function Explore() {
     <>
       <Navbar />
       <SearchFilter setEvents={setEvents} />
-      
+
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <span className="loading loading-spinner loading-lg"></span>
@@ -59,14 +58,11 @@ function Explore() {
       ) : (
         <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
           {currentEvents.map((event) => (
-            <Card 
-              key={event.id}
-              event={event}
-            />
+            <Card key={event.id} event={event} />
           ))}
         </div>
       )}
-      
+
       {!loading && !error && events.length > 0 && (
         <Pagination
           currentPage={currentPage}
@@ -74,7 +70,7 @@ function Explore() {
           onPageChange={(page) => setCurrentPage(page)}
         />
       )}
-      
+
       <Footer />
     </>
   );

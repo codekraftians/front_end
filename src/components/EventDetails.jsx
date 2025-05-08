@@ -17,7 +17,7 @@ const EventDetails = () => {
       try {
         const data = await getEventById(id);
         setEvent(data);
-        console.table(data); // Muestra los datos del evento en la consola
+        console.table(data);
       } catch (err) {
         setError(
           err.response?.data?.message || "Failed to fetch event details"
@@ -41,7 +41,7 @@ const EventDetails = () => {
     });
 
   if (isLoading) {
-    return <p className="text-center">Cargando detalles del evento...</p>;
+    return <p className="text-center">Loading event details...</p>;
   }
 
   if (error) {
@@ -49,7 +49,7 @@ const EventDetails = () => {
   }
 
   if (!event) {
-    return <p className="text-center">No se encontró el evento</p>;
+    return <p className="text-center">Event not found</p>;
   }
 
   return (
@@ -75,18 +75,18 @@ const EventDetails = () => {
           </div>
         </div>
 
-        {/* Tarjeta del evento */}
         <div className="card w-full max-w-md bg-base-100 shadow-lg">
           <figure>
             <img
-              src={event.eventsImageUrl || avatarImg} // Usa la imagen del evento o una predeterminada
+              src={event.eventsImageUrl || avatarImg}
               alt={event.title}
               className="w-full h-48 object-cover"
             />
           </figure>
           <div className="card-body">
-            {/* Badge de tipo de evento arriba del título */}
-            <div className="badge badge-secondary w-fit mb-2">{event.eventType}</div>
+            <div className="badge badge-secondary w-fit mb-2">
+              {event.eventType}
+            </div>
             <h2 className="card-title text-lg">{event.title}</h2>
             <p className="text-sm text-gray-500">
               {formatearFechaHora(event.eventDate, event.eventTime)}
@@ -100,7 +100,6 @@ const EventDetails = () => {
           </div>
         </div>
 
-        {/* Botón de volver */}
         <div className="mt-4">
           <Button variant="ghost" onClick={() => window.history.back()}>
             Volver

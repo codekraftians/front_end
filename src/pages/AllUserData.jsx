@@ -6,23 +6,23 @@ import UserDataProfile from "../components/UserDataProfile";
 function AllUserData() {
   const [activeComponent, setActiveComponent] = useState("userDataProfile");
 
-  // Función para renderizar el componente activo
+
   const renderActiveComponent = () => {
     switch (activeComponent) {
       case "userDataProfile":
         return <UserDataProfile />;
       case "myEvents":
-        return <h1 className="text-xl font-bold">Mis eventos</h1>;
+        return <h1 className="text-xl font-bold">My events</h1>;
       case "attendedEvents":
-        return <h1 className="text-xl font-bold">Eventos a los que asistí</h1>;
+        return <h1 className="text-xl font-bold">Events I attended</h1>;
       case "futureEvents":
         return (
-          <h1 className="text-xl font-bold">Eventos a los que asistiré</h1>
+          <h1 className="text-xl font-bold">Events I will attend</h1>
         );
       case "interestedEvents":
-        return <h1 className="text-xl font-bold">Eventos que me interesan</h1>;
+        return <h1 className="text-xl font-bold">Events I'm interested in</h1>;
       default:
-        return <h1 className="text-xl font-bold">Selecciona una opción</h1>;
+        return <h1 className="text-xl font-bold">Select an option</h1>;
     }
   };
 
@@ -30,7 +30,7 @@ function AllUserData() {
     <>
       <Navbar />
       <div className="flex flex-col w-full min-h-screen">
-        {/* Menú responsivo centrado */}
+       
         <div className="flex justify-center items-center bg-base-200 w-full p-4">
           <ul className="menu flex flex-row md:flex-row gap-4 bg-base-100 rounded-box shadow-md p-4">
             <li>
@@ -60,7 +60,7 @@ function AllUserData() {
                 }`}
                 onClick={() => setActiveComponent("attendedEvents")}
               >
-                Eventos a los que asistí
+                Events I attended
               </button>
             </li>
             <li>
@@ -70,7 +70,7 @@ function AllUserData() {
                 }`}
                 onClick={() => setActiveComponent("futureEvents")}
               >
-                Eventos a los que asistiré
+                Events I will attend
               </button>
             </li>
             <li>
@@ -80,13 +80,13 @@ function AllUserData() {
                 }`}
                 onClick={() => setActiveComponent("interestedEvents")}
               >
-                Eventos que me interesan
+                Events I'm interested in
               </button>
             </li>
           </ul>
         </div>
 
-        {/* Contenido dinámico */}
+      
         <div className="flex-grow p-4">{renderActiveComponent()}</div>
       </div>
       <Footer />
