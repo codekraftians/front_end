@@ -4,10 +4,14 @@ const API_URL = "http://localhost:8080/api/v1/events";
 
 export const postEvent = async (event, userId) => {
   try {
+    console.log(`Sending POST request to ${API_URL}/user/${userId} with data:`, event);
     const response = await axios.post(`${API_URL}/user/${userId}`, event);
     return response.data;
   } catch (error) {
     console.error("Error posting event:", error);
+    if (error.response && error.response.data) {
+      console.error("Server response:", error.response.data);
+    }
     throw error;
   }
 };

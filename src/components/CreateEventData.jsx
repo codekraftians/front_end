@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "./buttons/Button";
 import { useCloudinaryUpload } from "./hooks/useCloudinaryUpload";
 import { postEvent } from "../services/apiEvents";
+import { getUser } from "../services/apiUsers";
 
 
 const MOCK_USER = {
@@ -32,12 +33,32 @@ const CreateEventData = () => {
 
  
   useEffect(() => {
-    const storedUser = localStorage.getItem("tssUser");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    } 
-    setLoadingUser(false);
+    const fetchUser = async () => {
+      setLoadingUser(true);
+      try {
+        // Intentar obtener usuario del localStorage
+        const storedUser = localStorage.getItem("tssUser");
+        
+        if (storedUser) {
+          // Si hay un usuario en localStorage, usarlo
+          setUser(JSON.parse(storedUser));
+        } else {
+          // Si no hay usuario en localStorage, usar MOCK_USER
+          console.log("No user found in localStorage, using mock user");
+          // Guardar el usuario mock en localStorage para simular un login
+          localStorage.setItem("tssUser", JSON.stringify(MOCK_USER));
+          setUser(MOCK_USER);
+        }
+      } catch (error) {
+        console.error("Error setting up user data:", error);
+        // En caso de error, usar MOCK_USER como fallback
+        setUser(MOCK_USER);
+      } finally {
+        setLoadingUser(false);
+      }
+    };
     
+    fetchUser();
   }, []);
 
   const handleChange = (e) => {
@@ -70,8 +91,8 @@ const CreateEventData = () => {
     uploading,
     uploadComplete,
     cloudinaryResponse,
-    errorCloudinary,
-    setErrorCloudinary,
+    error: errorCloudinary,
+    setError: setErrorCloudinary,
     uploadFile,
     setCloudinaryResponse,
   } = useCloudinaryUpload();
@@ -103,43 +124,57 @@ const CreateEventData = () => {
       setIsLoading(true);
       setError(null);
       
+      // Validación básica
+      if (!FormDataEvent.title || !FormDataEvent.eventDate || !FormDataEvent.eventTime || !FormDataEvent.location) {
+        throw new Error("Please fill in all required fields: title, date, time, and location");
+      }
+      
+      if (!FormDataEvent.eventType) {
+        throw new Error("Please select an event type (In person or Online)");
+      }
+      
       if (!user) {
         throw new Error("User data is not available");
       }
       
-     
+      // Crear objeto de datos del evento
       const eventData = {
-          title: FormDataEvent.title,
-          description: FormDataEvent.description,
-          eventDate: FormDataEvent.eventDate,
-          eventTime: FormDataEvent.eventTime,
-          eventsImageUrl: cloudinaryResponse?.url || "",
-          location: FormDataEvent.location,
-          maxAttendees: FormDataEvent.maxAttendees,
-          eventType: FormDataEvent.eventType === "inPerson" ? "IN_PERSON" : "ONLINE", 
-          user: {
+        title: FormDataEvent.title,
+        description: FormDataEvent.description,
+        eventDate: FormDataEvent.eventDate,
+        eventTime: FormDataEvent.eventTime,
+        // Usar una URL de imagen por defecto si no hay una imagen subida
+        eventsImageUrl: cloudinaryResponse?.url || "https://placehold.co/600x400?text=No+Image",
+        location: FormDataEvent.location,
+        maxAttendees: parseInt(FormDataEvent.maxAttendees) || 0,
+        eventType: FormDataEvent.eventType === "inPerson" ? "IN_PERSON" : "ONLINE", 
+        user: {
           id: user.id,
           name: user.name,
           email: user.email,
           password: user.password,
-          userImageUrl: user.image, 
+          userImageUrl: user.userImageUrl || user.image || "https://picsum.photos/200/300",
         }
       };
       
       console.log("Datos del evento a enviar:", eventData);
       
       try {
-       
         const createdEvent = await postEvent(eventData, user.id);
         console.log("Evento creado en la base de datos:", createdEvent);
+        alert("Evento creado con éxito!");
+        handleClear();
       } catch (apiError) {
         console.warn("API no disponible, usando modo mock:", apiError);
-      
-        console.log("Mock: Evento creado con éxito");
+        if (apiError.response && apiError.response.data) {
+          console.error("Error details:", apiError.response.data);
+          setError(`Error: ${apiError.response.data.message || "Unknown server error"}`);
+        } else {
+          console.log("Mock: Evento creado con éxito");
+          alert("Evento creado con éxito (modo simulado)!");
+          handleClear();
+        }
       }
-      
-      alert("Evento creado con éxito!");
-      handleClear();
       
     } catch (err) {
       setError("Error creating event: " + err.message);
